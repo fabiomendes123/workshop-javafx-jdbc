@@ -38,7 +38,7 @@ public class DepartmentFormController implements Initializable{
 	private TextField txtName;
 	
 	@FXML
-	private Label laborErrorName;
+	private Label labelErrorName;
 	
 	@FXML
 	private Button btSave;
@@ -132,7 +132,7 @@ public class DepartmentFormController implements Initializable{
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 		if (fields.contains("name")) {
-			laborErrorName.setText(errors.get("name"));
+			labelErrorName.setText(errors.get("name"));
 		}
 		
 	}
