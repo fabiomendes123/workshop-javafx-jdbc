@@ -3,7 +3,6 @@ package gui;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -171,7 +170,6 @@ public class SellerFormController implements Initializable{
 		Utils.currentStage(event).close();
 	
 	}
-	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
@@ -198,8 +196,10 @@ public class SellerFormController implements Initializable{
 		txtBaseSalary.setText(String.format("%.2f", entity.getBaseSalary()));
 		
 		if (entity.getBirthDate() != null) {
-			dpBirthDate.setValue (LocalDate());//errado!
+			dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
 		}
+		
+		
 		if(entity.getDepartment()==null) {
 			comboBoxDepartment.getSelectionModel().selectFirst();
 		}
@@ -207,10 +207,7 @@ public class SellerFormController implements Initializable{
 			comboBoxDepartment.setValue(entity.getDepartment());
 		}
 	}
-	private LocalDate LocalDate() { //revisar não está funcinando!!!
-		LocalDateTime.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault());
-		return null; //revisar essa parada aqui que não quiz funcionar
-	}
+
 	
 	public void loadAssociatedObjects() {
 		if (departmentService == null) {
